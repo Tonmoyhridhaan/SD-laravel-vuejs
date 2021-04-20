@@ -39,9 +39,24 @@ export default {
         const response = await this.$http.post(baseURI, {
           email: this.email,
           password: this.password
-        })
-
-        console.log(response.data);
+        });
+        if(response.data.flag=='1'){
+          localStorage.setItem('token', response.data.user.id);
+          localStorage.setItem('role', response.data.user.role);
+          // console.log(response.data.user.role);
+          if(response.data.user.role=='admin'){
+            this.$router.push('/admin/dashboard');
+          }
+          else if(response.data.user.role=='student'){
+            this.$router.push('/student/dashboard');
+          } 
+          else {
+            this.$router.push('/teacher/dashboard');
+          }
+        }
+        else {
+          alert(response.data.msg);
+        }
       }
     }
 }

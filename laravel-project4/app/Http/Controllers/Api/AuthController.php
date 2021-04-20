@@ -12,29 +12,26 @@ class AuthController extends Controller
     public function storeLogin(Request $r){
         $email =$r->email;
         $password =$r->password;
-        $user = User::where('email','=',$email)->where('password','=',$password)->first();
+        $user = User::where('email','=',$email)->where('password','=',md5($password))->first();
         if($user) {
-            Session::put('username',$user->name);
-            Session::put('userrole',$user->role);
             return response()->json([
                 'user'=> $user,
-                'msg'=> 'Successfully Logged in'
+                'msg'=> 'Successfully Logged in',
+                'flag'=> '1'
             ]);
-       
-               
-            
         }
         else {
             // echo 'login failed <br>';
             return response()->json([
-                'msg'=> 'Invalid Email or Password'
+                'msg'=> 'Invalid Email or Password',
+                'flag'=> '0'
             ]);
         }
     }
-    // public function getUserById($id){ 
-    //     $user = User::find($id); //return obj
-    //     return response()->json([
-    //         'user'=> $user
-    //     ]);
-    // }
+    public function getUserById($id){ 
+        $user = User::find($id); //return obj
+        return response()->json([
+            'user'=> $user
+        ]);
+    }
 }

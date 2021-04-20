@@ -26,11 +26,11 @@ export default {
   padding-top: 20px;
 }
 
-.sidebar-logo {
+/* .sidebar-logo {
   padding: 10px 15px 10px 30px;
   font-size: 20px;
   background-color: #2574A9;
-}
+} */
 
 .sidebar-navigation {
   padding: 0;
@@ -64,7 +64,7 @@ export default {
   outline: none;
 }
 
-.sidebar-navigation li::before {
+/* .sidebar-navigation li::before {
   background-color: #2574A9;
   position: absolute;
   content: '';
@@ -75,7 +75,7 @@ export default {
   transition: width 0.2s ease-in;
   width: 3px;
   z-index: -1;
-}
+} */
 
 .sidebar-navigation li:hover::before {
   width: 100%;

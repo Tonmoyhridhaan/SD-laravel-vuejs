@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,19 @@ use App\Http\Controllers\Api\AuthController;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
 #to login
 Route::post('/store-login', [AuthController::class, 'storeLogin']);
 Route::get('get-user/{id}', [AuthController::class, 'getUserById']);
+
+//Admin :--------------------------------------------------------------
+
+//creation:
+Route::post('create-teacher', [AdminController::class, 'createTeacher']);
+Route::post('create-student', [AdminController::class, 'createStudent']);
+
+
+//Teacher :---------------------------------------------------------------
+
+
+//Student :---------------------------------------------------------------

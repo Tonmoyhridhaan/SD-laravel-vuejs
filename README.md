@@ -59,3 +59,6 @@ import axios from 'axios'
 Vue.prototype.$http = axios
 ```
 > used to sent POST and GET request to the server
+
+### Database
+Export updated database ```project_04``` to Localhost Server

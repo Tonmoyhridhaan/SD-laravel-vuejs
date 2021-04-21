@@ -1,45 +1,49 @@
 <template>
-    <div>
-        <div class="sidebar-container">
-            <div class="sidebar-logo">
-                Student Panel
+    <div class="wrapper">
+        <div class="col-2">
+            <div class="sidebar-container">
+                <div class="sidebar-logo">
+                    Student Panel
+                </div>
+                <ul class="sidebar-navigation">
+                    <li class="header">Navigation</li>
+                    <li>
+                    <router-link to="/student/dashboard">
+                        <i class="fa fa-home" aria-hidden="true"></i> Homepage
+                    </router-link>
+                    </li>
+                    <li>
+                    <router-link to="/student/dashboard">
+                        <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
+                    </router-link>
+                    </li>
+                    <li class="header">Another Menu</li>
+                    <li>
+                    <router-link to="#">
+                        <i class="fa fa-users" aria-hidden="true"></i> Friends
+                    </router-link>
+                    </li>
+                    <li>
+                    <router-link to="#">
+                        <i class="fa fa-cog" aria-hidden="true"></i> Settings
+                    </router-link>
+                    </li>
+                    <li>
+                    <router-link to="/student/information">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i> Information
+                    </router-link>
+                    </li>
+                    <li>
+                    <a href="javascript:void(0)" @click="handleClick">
+                        <i class="fa fa-warning-circle" aria-hidden="true"></i> Logout
+                    </a>
+                    </li>
+                </ul>
             </div>
-            <ul class="sidebar-navigation">
-                <li class="header">Navigation</li>
-                <li>
-                <router-link to="/student/dashboard">
-                    <i class="fa fa-home" aria-hidden="true"></i> Homepage
-                </router-link>
-                </li>
-                <li>
-                <router-link to="/student/dashboard">
-                    <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
-                </router-link>
-                </li>
-                <li class="header">Another Menu</li>
-                <li>
-                <router-link to="#">
-                    <i class="fa fa-users" aria-hidden="true"></i> Friends
-                </router-link>
-                </li>
-                <li>
-                <router-link to="#">
-                    <i class="fa fa-cog" aria-hidden="true"></i> Settings
-                </router-link>
-                </li>
-                <li>
-                <router-link to="/student/information">
-                    <i class="fa fa-info-circle" aria-hidden="true"></i> Information
-                </router-link>
-                </li>
-                <li>
-                <a href="javascript:void(0)" @click="logoutClick">
-                    <i class="fa fa-warning-circle" aria-hidden="true"></i> Logout
-                </a>
-                </li>
-            </ul>
         </div>
-        <router-view></router-view>
+        <div class="col-10">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 <script>
@@ -50,8 +54,9 @@ export default {
         }
     },
     methods: {
-        logoutClick() {
+        handleClick() {
             localStorage.removeItem('token');
+            localStorage.removeItem('role');
             this.$router.push('/');
         }
     },
@@ -61,19 +66,23 @@ export default {
         if(!localStorage.getItem('token')){
             this.$router.push('/');
         }
-         else if(role=='teacher'){
-            this.$router.push('/teacher');
+        if(role=='teacher'){
+            this.$router.push('/teacher/dashboard');
         }
         else if(role=='admin'){
-            this.$router.push('/admin');
+            this.$router.push('/admin/dashboard');
         }
-        const baseURI = 'http://127.0.0.1:8000/api/get-user/' + token;
-        const response = await this.$http.get(baseURI);
-        console.log(response.data.user);
+        // const baseURI = 'http://127.0.0.1:8000/api/get-user/' + token;
+        // const response = await this.$http.get(baseURI);
+        // console.log(response.data.user);
     }
 }
 </script>
 <style>
+.wrapper {
+    display: flex;
+    width: 100%;
+}
 .sidebar-logo {
   padding: 10px 15px 10px 30px;
   font-size: 20px;

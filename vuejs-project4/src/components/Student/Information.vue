@@ -5,6 +5,7 @@
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <div v-if="user">
+                            <h5 class="card-title text-center" >Student</h5>
                             <h5 class="card-title text-center" >{{ user.name }}</h5>
                             <h4 class="card-title text-center" >{{ user.email }}</h4>
                         </div>
@@ -35,3 +36,30 @@ export default {
     }
 }
 </script>
+<style>
+:root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
+}
+
+body {
+  background: #2286b4;
+  background: linear-gradient(to right, #0e4a6d, #40d2ff);
+}
+
+.card-signin {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-signin .card-body {
+  padding: 2rem;
+}
+</style>

@@ -8,14 +8,26 @@
                 <ul class="sidebar-navigation">
                     <li class="header">Navigation</li>
                     <li>
-                    <router-link to="/teacher/dashboard">
-                        <i class="fa fa-home" aria-hidden="true"></i> Homepage
-                    </router-link>
+                        <router-link to="/teacher/dashboard">
+                            <i class="fa fa-home" aria-hidden="true"></i> Dashboard
+                        </router-link>
                     </li>
                     <li>
-                    <router-link to="/teacher/dashboard">
-                        <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
-                    </router-link>
+                        <a href="javascript:void(0);" class="" @click="subToggle1">
+                            <i class="fa fa-tachometer" aria-hidden="true"></i> Distribution
+                        </a>
+                        <ul class="sidebar-sub-nav" v-bind:style="{display: show1}">
+                            <li>
+                                <router-link to="/teacher/distribution/marks">
+                                    <i class="fa fa-home" aria-hidden="true"></i> Marks Distribution
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="/teacher/distribution/show">
+                                    <i class="fa fa-home" aria-hidden="true"></i> Show Distribution
+                                </router-link>
+                            </li>
+                        </ul>
                     </li>
                     <li class="header">Another Menu</li>
                     <li>
@@ -50,7 +62,9 @@
 export default {
     data() {
         return {
-             user: null
+             user: null,
+             show1: 'none',
+             fg: true
         }
     },
     methods: {
@@ -58,6 +72,12 @@ export default {
             localStorage.removeItem('token');
             localStorage.removeItem('role');
             this.$router.push('/');
+        },
+        subToggle1() {
+            if(this.fg) this.show1 = 'block';
+            else this.show1 = 'none';
+            this.fg ^= 1;
+            console.log(this.fg);
         }
     },
     async created() {
@@ -89,11 +109,23 @@ export default {
   background-color: #4e008d;
 }
 .sidebar-navigation li::before {
-  background-color: #8239bd;
+  background-color: #590d97;
   position: absolute;
   content: '';
   height: 100%;
   left: 0;
+  top: 0;
+  -webkit-transition: width 0.2s ease-in;
+  transition: width 0.2s ease-in;
+  width: 3px;
+  z-index: -1;
+}
+.sidebar-sub-nav li::before {
+  background-color: #300752;
+  position: absolute;
+  content: '';
+  height: 95%;
+  left: 1%;
   top: 0;
   -webkit-transition: width 0.2s ease-in;
   transition: width 0.2s ease-in;

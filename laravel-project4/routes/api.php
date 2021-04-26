@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AdminController;
+use App\Http\Controllers\Api\TeacherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +27,18 @@ Route::get('get-user/{id}', [AuthController::class, 'getUserById']);
 
 //Admin :--------------------------------------------------------------
 
-//creation:
-Route::post('create-teacher', [AdminController::class, 'createTeacher']);
-Route::post('create-student', [AdminController::class, 'createStudent']);
+#creation:
+    Route::post('create-teacher', [AdminController::class, 'createTeacher']);
+    Route::post('create-student', [AdminController::class, 'createStudent']);
 
 
 //Teacher :---------------------------------------------------------------
+
+#Distribution
+    Route::get('get-assigned-teacher-session/{id}', [TeacherController::class, 'getSession']);
+    Route::post('get-assigned-teacher-course/{id}', [TeacherController::class, 'getCourse']);
+    Route::post('get-assigned-teacher-section/{id}', [TeacherController::class, 'getSection']);
+    Route::post('create-distribution', [TeacherController::class, 'createDistribution']);
 
 
 //Student :---------------------------------------------------------------

@@ -2,12 +2,13 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
-                <div class="card card-signin my-5">
+                <div class="card text-white bg-dark">
+                    <div class="card-header">Distribution</div>
                     <div class="card-body">
-                        <div>
-                            <h5 class="card-title text-center" >{{ role }} Creation</h5>
+                        <!-- <div>
+                            <h5 class="card-title text-center" >Distribution</h5>
                             <hr>
-                        </div>
+                        </div> -->
                         <router-view></router-view>
                     </div>
                 </div>
@@ -18,14 +19,7 @@
 
 <script>
 export default {
-     data() {
-        return {
-             role : null
-        }
-    },
-    async created() {
-        this.role = localStorage.getItem('role');
-    }
+
 }
 </script>
 
@@ -36,18 +30,18 @@ export default {
 }
 
 body {
-  background: #b47722;
-  background: linear-gradient(to right, #492e02, #ffb01e);
+  background: #525252;
+  background: linear-gradient(to right, #2c2c2cee, #1d1d1d);
 }
 
-.card-signin {
+.card {
   border: 0;
-  border-radius: 1rem;
-  box-shadow: 2rem 2rem 2rem 0 rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  box-shadow: 0rem 2rem 2.5rem 2rem rgba(3, 3, 3, 0.199);
 }
 
-.card-signin .card-title {
-  margin-bottom: 2rem;
+.card .card-title {
+  margin-bottom: 1.5rem;
   font-weight: 300;
   font-size: 1.5rem;
 }

@@ -20,6 +20,9 @@ import SInformation from '@/components/Student/Information'
 import TeacherDashboard from '@/components/Teacher/Dashboard'
 import TeacherSidebar from '@/components/Teacher/Sidebar'
 import TInformation from '@/components/Teacher/Information'
+import Distribution from '@/components/Teacher/Distribution/Dist'
+import Marks from '@/components/Teacher/Distribution/Marks'
+import Show from '@/components/Teacher/Distribution/Show'
 
 Vue.use(Router)
 
@@ -108,6 +111,22 @@ export default new Router({
           path: 'information',
           name: 'Information',
           component: TInformation
+        },
+        {
+          path: 'distribution',
+          component: Distribution,
+          children: [
+            {
+              path: 'marks',
+              name: 'marks',
+              component: Marks
+            },
+            {
+              path: 'show',
+              name: 'show',
+              component: Show
+            }
+          ]
         }
       ]
     }

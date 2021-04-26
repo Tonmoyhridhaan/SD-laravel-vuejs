@@ -18,7 +18,7 @@ class AdminController extends Controller
         if($obj->save()){
             return response() -> json([
                 'data' => $obj,
-                'msg' => 'Successfully inserted'
+                'msg' => 'Teacher Successfully inserted'
             ]);
         }
     }
@@ -31,7 +31,7 @@ class AdminController extends Controller
         if($obj->save()){
             return response() -> json([
                 'data' => $obj,
-                'msg' => 'Successfully inserted'
+                'msg' => 'Student Successfully inserted'
             ]);
         }
     }

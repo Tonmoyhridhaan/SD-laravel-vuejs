@@ -11,7 +11,7 @@
                 </select>
             </div>
 
-            <div v-if="fg1" class="form-group">
+            <div v-show="session" class="form-group">
                 <label for="">Select Course</label>
                 <select class="form-control text-white bg-dark" :required="true" @change="courseChange" v-model="course">
                   <option :selected="true">Please select one</option>
@@ -19,14 +19,14 @@
                 </select>
             </div>
 
-            <div v-if="fg2" class="form-group" @change="sectionChange">
+            <div v-show="course" class="form-group" @change="sectionChange">
                 <label class="form-check-label" for="">Select Sections: </label> 
                 <div  v-for="s in sections" :key="s.id">
                    &emsp;<input :value="s.id" type="checkbox" v-model="section"> &emsp;{{ s.name}}
                 </div>
             </div>
 
-            <div v-if="fg3">
+            <div v-if="fg">
                 <div class="row">
                     <div class="col-md-4 portlets">
                         <button v-show="total_marks!=100" type='button' class="btn btn-info" @click="addNewRow">
@@ -54,7 +54,7 @@
 
                 <hr>
 
-                <table @change="categoryChange">
+                <table>
                     <tr v-for="(category, k) in categories" :key="k">
                         <td scope="row" class="btn btn-danger">
                             <i @click="deleteRow(k, category)">
@@ -86,6 +86,11 @@
                 </button>
             </div>
 
+            <div v-show="fg1" class="form-group alert alert-success alert-dismissible fade show">
+                <button type="button" v-on:click="alertCross" class="close" data-dismiss="alert">&times;</button>
+                <strong>Marks Distribution Created Successfully!</strong>
+            </div>
+
         </form>
     </div>
 </template>
@@ -94,32 +99,27 @@
 export default {
     data() {
         return {
-          sessions: [],
-          session: null,
-          courses: [],
-          course: null,
-          sections: [],
-          section: [],
-          fg1: false,
-          fg2: false,
-          fg3: false,
-
-          total_marks: 0,
-          categories: [{
-              name: '',
-              value: '',
-              line_total: 0
-          }]
+            sessions: [],
+            session: null,
+            courses: [],
+            course: null,
+            sections: [],
+            section: [],
+            fg: false,
+            fg1: 0,
+            total_marks: 0,
+            categories: [{
+                name: '',
+                value: '',
+                line_total: 0
+            }]
         }
     },
     async created() {
         const token = localStorage.getItem('token');
         const baseURI = 'http://127.0.0.1:8000/api/get-assigned-teacher-session/' + token;
         const response = await this.$http.get(baseURI);
-        // console.log(response.data);
         this.sessions = response.data.session;
-        // console.log(this.sessions);
-        // console.log(this.section);
     },
     methods: {
         async sessionChange () {
@@ -128,9 +128,7 @@ export default {
             const response = await this.$http.post(baseURI, {
               session_id: this.session
             });
-            // console.log(response.data);
             this.courses = response.data.course;
-            this.fg1 = true;
         },
         async courseChange () {
             const token = localStorage.getItem('token');
@@ -139,20 +137,12 @@ export default {
               session_id: this.session,
               course_id: this.course
             });
-            // console.log(response.data);
             this.sections = response.data.section;
-            this.fg2 = true;
         },
         sectionChange () {
-            // console.log(this.section);
-            this.fg3 = true;
-        },
-        categoryChange () {
-            // console.log(this.section);
-            this.fg3 = true;
+            this.fg = true;
         },
         async createDistribution () {
-            // console.log(this.categories);
             const baseURI = 'http://127.0.0.1:8000/api/create-distribution';
             const response = await this.$http.post(baseURI, {
                 teacher_id: localStorage.getItem('token'),
@@ -161,10 +151,22 @@ export default {
                 sections_id: this.section,
                 categories: this.categories
             });
-            console.log(response.data);
-            alert(response.data.msg);
+            // console.log(response.data);
+            this.fg1 = response.data.fg;
         },
-
+        async alertCross () {
+            this.session = null;
+            this.course = null;
+            this.section = [];
+            this.fg = false;
+            this.fg1 = 0;
+            this.total_marks = 0;
+            this.categories = [{
+                name: '',
+                value: '',
+                line_total: 0
+            }];
+        },
         addNewRow() {
             this.categories.push({
                 name: '',

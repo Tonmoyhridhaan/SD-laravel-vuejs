@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2021 at 11:24 PM
+-- Generation Time: Apr 25, 2021 at 10:37 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -35,7 +35,7 @@ CREATE TABLE `courses` (
   `type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `semester` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -74,10 +74,10 @@ INSERT INTO `courses` (`id`, `name`, `code`, `credit`, `type`, `semester`, `crea
 -- --------------------------------------------------------
 
 --
--- Table structure for table `enrollment`
+-- Table structure for table `enrollments`
 --
 
-CREATE TABLE `enrollment` (
+CREATE TABLE `enrollments` (
   `id` int(11) NOT NULL,
   `student_id` int(11) DEFAULT NULL,
   `course_id` int(11) DEFAULT NULL,
@@ -87,14 +87,14 @@ CREATE TABLE `enrollment` (
   `session_id` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `enrollment`
+-- Dumping data for table `enrollments`
 --
 
-INSERT INTO `enrollment` (`id`, `student_id`, `course_id`, `type_id`, `section_id`, `teacher_id`, `session_id`, `status`, `created_at`, `updated_at`) VALUES
+INSERT INTO `enrollments` (`id`, `student_id`, `course_id`, `type_id`, `section_id`, `teacher_id`, `session_id`, `status`, `created_at`, `updated_at`) VALUES
 (12, 19, 24, 1, 13, 16, 3, 1, '2021-04-21 04:02:29', '0000-00-00 00:00:00'),
 (13, 20, 24, 1, 14, 16, 3, 1, '2021-04-21 04:02:29', '0000-00-00 00:00:00'),
 (14, 22, 24, 1, 15, 16, 3, 1, '2021-04-21 04:02:29', '0000-00-00 00:00:00'),
@@ -117,7 +117,7 @@ CREATE TABLE `marks_assign` (
   `dist_id` int(11) DEFAULT NULL,
   `marks` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -148,10 +148,10 @@ INSERT INTO `marks_assign` (`id`, `student_id`, `teacher_id`, `course_id`, `sect
 -- --------------------------------------------------------
 
 --
--- Table structure for table `num_dist`
+-- Table structure for table `num_dists`
 --
 
-CREATE TABLE `num_dist` (
+CREATE TABLE `num_dists` (
   `id` int(11) NOT NULL,
   `course_id` int(11) DEFAULT NULL,
   `teacher_id` int(11) DEFAULT NULL,
@@ -160,14 +160,14 @@ CREATE TABLE `num_dist` (
   `catagory_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `marks` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `num_dist`
+-- Dumping data for table `num_dists`
 --
 
-INSERT INTO `num_dist` (`id`, `course_id`, `teacher_id`, `section_id`, `session_id`, `catagory_name`, `marks`, `created_at`, `updated_at`) VALUES
+INSERT INTO `num_dists` (`id`, `course_id`, `teacher_id`, `section_id`, `session_id`, `catagory_name`, `marks`, `created_at`, `updated_at`) VALUES
 (1, 5, 3, 1, 7, 'ct-1', 5, '2021-04-21 04:03:50', '0000-00-00 00:00:00'),
 (2, 5, 3, 1, 7, 'ct-2', 5, '2021-04-21 04:03:50', '0000-00-00 00:00:00'),
 (3, 5, 3, 1, 7, 'attendance', 10, '2021-04-21 04:03:50', '0000-00-00 00:00:00'),
@@ -313,7 +313,7 @@ CREATE TABLE `sections` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `semester` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -348,7 +348,7 @@ CREATE TABLE `sessions` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -379,7 +379,7 @@ CREATE TABLE `teacher_assigns` (
   `session_id` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -394,11 +394,11 @@ INSERT INTO `teacher_assigns` (`id`, `teacher_id`, `section_id`, `course_id`, `s
 (5, 12, 10, 18, 2, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
 (7, 12, 7, 13, 1, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
 (8, 15, 13, 27, 3, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
-(9, 16, 14, 24, 3, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
+(9, 16, 14, 24, 3, 1, '2021-04-25 20:27:54', '0000-00-00 00:00:00'),
 (10, 17, 13, 25, 3, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
-(11, 18, 13, 23, 3, 0, '2021-04-21 20:58:36', '0000-00-00 00:00:00'),
-(12, 16, 13, 24, 3, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
-(13, 16, 15, 24, 3, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
+(11, 18, 13, 23, 3, 1, '2021-04-25 20:19:47', '0000-00-00 00:00:00'),
+(12, 16, 13, 24, 3, 1, '2021-04-25 20:27:54', '0000-00-00 00:00:00'),
+(13, 16, 15, 24, 3, 1, '2021-04-25 20:29:36', '0000-00-00 00:00:00'),
 (14, 2, 1, 3, 7, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
 (16, 4, 1, 1, 7, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
 (17, 5, 1, 2, 7, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
@@ -416,22 +416,22 @@ INSERT INTO `teacher_assigns` (`id`, `teacher_id`, `section_id`, `course_id`, `s
 -- --------------------------------------------------------
 
 --
--- Table structure for table `type`
+-- Table structure for table `types`
 --
 
-CREATE TABLE `type` (
+CREATE TABLE `types` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `type`
+-- Dumping data for table `types`
 --
 
-INSERT INTO `type` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+INSERT INTO `types` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Regular', 1, '2021-04-21 04:05:47', '0000-00-00 00:00:00'),
 (2, 'Retake', 0, '2021-04-21 04:05:47', '0000-00-00 00:00:00'),
 (3, 'Recourse', 1, '2021-04-21 04:05:47', '0000-00-00 00:00:00');
@@ -449,7 +449,7 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -501,9 +501,9 @@ ALTER TABLE `courses`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `enrollment`
+-- Indexes for table `enrollments`
 --
-ALTER TABLE `enrollment`
+ALTER TABLE `enrollments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `student_id` (`student_id`),
   ADD KEY `teacher_id` (`teacher_id`),
@@ -525,9 +525,9 @@ ALTER TABLE `marks_assign`
   ADD KEY `dist_id` (`dist_id`);
 
 --
--- Indexes for table `num_dist`
+-- Indexes for table `num_dists`
 --
-ALTER TABLE `num_dist`
+ALTER TABLE `num_dists`
   ADD PRIMARY KEY (`id`),
   ADD KEY `teacher_id` (`teacher_id`),
   ADD KEY `course_id` (`course_id`),
@@ -557,9 +557,9 @@ ALTER TABLE `teacher_assigns`
   ADD KEY `session_id` (`session_id`);
 
 --
--- Indexes for table `type`
+-- Indexes for table `types`
 --
-ALTER TABLE `type`
+ALTER TABLE `types`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -579,9 +579,9 @@ ALTER TABLE `courses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT for table `enrollment`
+-- AUTO_INCREMENT for table `enrollments`
 --
-ALTER TABLE `enrollment`
+ALTER TABLE `enrollments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
@@ -591,9 +591,9 @@ ALTER TABLE `marks_assign`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT for table `num_dist`
+-- AUTO_INCREMENT for table `num_dists`
 --
-ALTER TABLE `num_dist`
+ALTER TABLE `num_dists`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
 
 --
@@ -615,9 +615,9 @@ ALTER TABLE `teacher_assigns`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
--- AUTO_INCREMENT for table `type`
+-- AUTO_INCREMENT for table `types`
 --
-ALTER TABLE `type`
+ALTER TABLE `types`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
@@ -631,15 +631,15 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `enrollment`
+-- Constraints for table `enrollments`
 --
-ALTER TABLE `enrollment`
-  ADD CONSTRAINT `enrollment_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `enrollment_ibfk_2` FOREIGN KEY (`teacher_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `enrollment_ibfk_3` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`),
-  ADD CONSTRAINT `enrollment_ibfk_4` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`),
-  ADD CONSTRAINT `enrollment_ibfk_5` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`),
-  ADD CONSTRAINT `enrollment_ibfk_6` FOREIGN KEY (`type_id`) REFERENCES `type` (`id`);
+ALTER TABLE `enrollments`
+  ADD CONSTRAINT `enrollments_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `enrollments_ibfk_2` FOREIGN KEY (`teacher_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `enrollments_ibfk_3` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`),
+  ADD CONSTRAINT `enrollments_ibfk_4` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`),
+  ADD CONSTRAINT `enrollments_ibfk_5` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`),
+  ADD CONSTRAINT `enrollments_ibfk_6` FOREIGN KEY (`type_id`) REFERENCES `types` (`id`);
 
 --
 -- Constraints for table `marks_assign`
@@ -650,16 +650,16 @@ ALTER TABLE `marks_assign`
   ADD CONSTRAINT `marks_assign_ibfk_3` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `marks_assign_ibfk_4` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`),
   ADD CONSTRAINT `marks_assign_ibfk_5` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`),
-  ADD CONSTRAINT `marks_assign_ibfk_6` FOREIGN KEY (`dist_id`) REFERENCES `num_dist` (`id`);
+  ADD CONSTRAINT `marks_assign_ibfk_6` FOREIGN KEY (`dist_id`) REFERENCES `num_dists` (`id`);
 
 --
--- Constraints for table `num_dist`
+-- Constraints for table `num_dists`
 --
-ALTER TABLE `num_dist`
-  ADD CONSTRAINT `num_dist_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `num_dist_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`),
-  ADD CONSTRAINT `num_dist_ibfk_3` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`),
-  ADD CONSTRAINT `num_dist_ibfk_4` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`);
+ALTER TABLE `num_dists`
+  ADD CONSTRAINT `num_dists_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `num_dists_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`),
+  ADD CONSTRAINT `num_dists_ibfk_3` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`),
+  ADD CONSTRAINT `num_dists_ibfk_4` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`);
 
 --
 -- Constraints for table `teacher_assigns`

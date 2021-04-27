@@ -22,6 +22,7 @@ class TeacherController extends Controller
                     ->where('teacher_assigns.teacher_id', '=', $id)
                     ->where('teacher_assigns.status', '=', 0)
                     ->select('sessions.id', 'sessions.name')
+                    ->distinct()
                     ->get();
 
         return response()->json([
@@ -40,6 +41,7 @@ class TeacherController extends Controller
                     ->where('teacher_assigns.session_id', '=', $s_id)
                     ->where('teacher_assigns.status', '=', 0)
                     ->select('courses.id', 'courses.name')
+                    ->distinct()
                     ->get();
 
         return response()->json([
@@ -69,18 +71,25 @@ class TeacherController extends Controller
     }
     public function createDistribution(Request $r){ 
         foreach($r->sections_id as $section_id) {
+            $obj1 = DB::table('teacher_assigns')
+                    ->where('teacher_assigns.teacher_id', '=', $r->teacher_id)
+                    ->where('teacher_assigns.session_id', '=', $r->session_id)
+                    ->where('teacher_assigns.course_id', '=', $r->course_id)
+                    ->where('teacher_assigns.section_id', '=', $section_id)
+                    ->update(['status' => 1]);
             foreach($r->categories as $cat) {
-                $obj = new Num_dist();
-                $obj->course_id     = $r->course_id ;
-                $obj->teacher_id    = $r->teacher_id ;
-                $obj->section_id    = $section_id ;
-                $obj->session_id    = $r->session_id ;
-                $obj->catagory_name = $cat['name'] ;
-                $obj->marks         = $cat['value'] ;
-                $obj->save();
+                $obj2 = new Num_dist();
+                $obj2->course_id     = $r->course_id ;
+                $obj2->teacher_id    = $r->teacher_id ;
+                $obj2->section_id    = $section_id ;
+                $obj2->session_id    = $r->session_id ;
+                $obj2->catagory_name = $cat['name'] ;
+                $obj2->marks         = $cat['value'] ;
+                $obj2->save();
             }
         }
         return response()->json([
+            'fg' => '1',
             'msg' => 'success'
         ]);
     }

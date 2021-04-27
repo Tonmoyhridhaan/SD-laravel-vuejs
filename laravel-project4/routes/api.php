@@ -30,6 +30,9 @@ Route::get('get-user/{id}', [AuthController::class, 'getUserById']);
 #creation:
     Route::post('create-teacher', [AdminController::class, 'createTeacher']);
     Route::post('create-student', [AdminController::class, 'createStudent']);
+    Route::post('create-course', [AdminController::class, 'createCourse']);
+    Route::post('create-section', [AdminController::class, 'createSection']);
+    Route::post('create-session', [AdminController::class, 'createSession']);
 
 
 //Teacher :---------------------------------------------------------------

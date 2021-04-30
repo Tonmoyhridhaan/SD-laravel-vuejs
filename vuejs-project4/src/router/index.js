@@ -12,6 +12,10 @@ import Stdcreation from '@/components/Admin/Creation/Student-creation'
 import Sescreation from '@/components/Admin/Creation/Session-creation'
 import Seccreation from '@/components/Admin/Creation/Section-creation'
 import Crscreation from '@/components/Admin/Creation/Course-creation'
+import Manage from '@/components/Admin/Manage/Manage'
+import Session from '@/components/Admin/Manage/Session'
+import StudentEnrollment from '@/components/Admin/Manage/StudentEnrollment'
+import EnrollmentStatus from '@/components/Admin/Manage/EnrollmentStatus'
 
 import StudentDashboard from '@/components/Student/Dashboard'
 import StudentSidebar from '@/components/Student/Sidebar'
@@ -77,6 +81,28 @@ export default new Router({
               path: 'course',
               name: 'Crscreation',
               component : Crscreation
+            }
+          ]
+        },
+        {
+          path: 'manage',
+          name: 'Manage',
+          component: Manage,
+          children: [
+            {
+              path: 'session',
+              name: 'Session',
+              component : Session
+            },
+            {
+              path: 'student-enrollment',
+              name: 'StudentEnrollment',
+              component : StudentEnrollment
+            },
+            {
+              path: 'enrollment-status',
+              name: 'EnrollmentStatus',
+              component : EnrollmentStatus
             }
           ]
         }

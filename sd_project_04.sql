@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2021 at 10:37 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Generation Time: Apr 26, 2021 at 07:16 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sd_project_04`
+-- Database: `project_04`
 --
 
 -- --------------------------------------------------------
@@ -34,8 +35,8 @@ CREATE TABLE `courses` (
   `credit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `semester` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -69,7 +70,8 @@ INSERT INTO `courses` (`id`, `name`, `code`, `credit`, `type`, `semester`, `crea
 (24, 'SEISD', 'CSE 305', '4', 'theory', 5, '2021-04-21 04:01:41', '0000-00-00 00:00:00'),
 (25, 'CE', 'EEE 309', '3', 'theory', 5, '2021-04-21 04:01:41', '0000-00-00 00:00:00'),
 (26, 'OB', 'MGT 251', '3', 'theory', 5, '2021-04-21 04:01:41', '0000-00-00 00:00:00'),
-(27, 'CMEP', 'CSE 301', '3', 'theory', 5, '2021-04-21 04:01:41', '0000-00-00 00:00:00');
+(27, 'CMEP', 'CSE 301', '3', 'theory', 5, '2021-04-21 04:01:41', '0000-00-00 00:00:00'),
+(28, 'AI', 'CSE 317', '3', 'theory', 6, '2021-04-25 22:14:28', '2021-04-25 22:14:28');
 
 -- --------------------------------------------------------
 
@@ -86,8 +88,8 @@ CREATE TABLE `enrollments` (
   `teacher_id` int(11) DEFAULT NULL,
   `session_id` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -116,8 +118,8 @@ CREATE TABLE `marks_assign` (
   `session_id` int(11) DEFAULT NULL,
   `dist_id` int(11) DEFAULT NULL,
   `marks` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -159,8 +161,8 @@ CREATE TABLE `num_dists` (
   `session_id` int(11) DEFAULT NULL,
   `catagory_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `marks` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -312,8 +314,8 @@ CREATE TABLE `sections` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `semester` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -335,7 +337,10 @@ INSERT INTO `sections` (`id`, `name`, `semester`, `created_at`, `updated_at`) VA
 (12, 'C4C', '4', '2021-04-21 04:04:18', '0000-00-00 00:00:00'),
 (13, 'C5A', '5', '2021-04-21 04:04:18', '0000-00-00 00:00:00'),
 (14, 'C5B', '5', '2021-04-21 04:04:18', '0000-00-00 00:00:00'),
-(15, 'C5C', '5', '2021-04-21 04:04:18', '0000-00-00 00:00:00');
+(15, 'C5C', '5', '2021-04-21 04:04:18', '0000-00-00 00:00:00'),
+(16, 'C6A', '6', '2021-04-25 22:22:43', '2021-04-25 22:22:43'),
+(17, 'C6B', '6', '2021-04-25 22:23:00', '2021-04-25 22:23:00'),
+(18, 'C6C', '6', '2021-04-25 22:23:23', '2021-04-25 22:23:23');
 
 -- --------------------------------------------------------
 
@@ -347,8 +352,8 @@ CREATE TABLE `sessions` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -363,7 +368,8 @@ INSERT INTO `sessions` (`id`, `name`, `status`, `created_at`, `updated_at`) VALU
 (5, 'Spring 2021', 1, '2021-04-21 04:04:44', '0000-00-00 00:00:00'),
 (6, 'fall 2021', 0, '2021-04-21 04:04:44', '0000-00-00 00:00:00'),
 (7, 'spring 2018', 0, '2021-04-21 04:04:44', '0000-00-00 00:00:00'),
-(8, 'fall 2018', 0, '2021-04-21 04:04:44', '0000-00-00 00:00:00');
+(8, 'fall 2018', 0, '2021-04-21 04:04:44', '0000-00-00 00:00:00'),
+(9, 'Spring 2022', 0, '2021-04-25 22:39:24', '2021-04-25 22:39:24');
 
 -- --------------------------------------------------------
 
@@ -378,8 +384,8 @@ CREATE TABLE `teacher_assigns` (
   `course_id` int(11) DEFAULT NULL,
   `session_id` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -423,8 +429,8 @@ CREATE TABLE `types` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -448,8 +454,8 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -576,7 +582,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `enrollments`
@@ -600,13 +606,13 @@ ALTER TABLE `num_dists`
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `teacher_assigns`

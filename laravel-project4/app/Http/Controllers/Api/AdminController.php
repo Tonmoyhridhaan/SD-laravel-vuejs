@@ -74,5 +74,36 @@ class AdminController extends Controller
             ]);
         }
     }
+
+    public function getSession(){
+        $sessions = Session::get();
+        return response() -> json([
+            'sessions' => $sessions,
+            'msg' => 'Session Successfully retrived'
+        ]);
+    }
     
+    public function updateSession(Request $request){
+        $id = $request->id;
+        $status = $request->status;
+        $obj = Session::find($id);
+        if($status==0){
+            $obj->status=1;
+            if($obj->save()){
+                return response() -> json([
+                    'data' => $obj,
+                    'msg' => 'Session Activated'
+                ]);
+            }
+        }
+        else if($status==1){
+            $obj->status=0;
+            if($obj->save()){
+                return response() -> json([
+                    'data' => $obj,
+                    'msg' => 'Session deactivated'
+                ]);
+            }
+        }
+    }
 }

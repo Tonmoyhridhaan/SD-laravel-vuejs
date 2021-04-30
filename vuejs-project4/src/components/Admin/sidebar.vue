@@ -50,17 +50,17 @@
                         </a>
                         <ul class="sidebar-sub-nav" v-bind:style="{display: show2}">
                             <li>
-                                <router-link to="/admin/">
+                                <router-link to="/admin/manage/session">
                                     <i class="fa fa-home" aria-hidden="true"></i> Session
                                 </router-link>
                             </li>
                             <li>
-                                <router-link to="/admin/">
+                                <router-link to="/admin/manage/enrollment-status">
                                     <i class="fa fa-home" aria-hidden="true"></i> Enrollment Status
                                 </router-link>
                             </li>
                             <li>
-                                <router-link to="/admin/">
+                                <router-link to="/admin/manage/student-enrollment">
                                     <i class="fa fa-home" aria-hidden="true"></i> Student Enrollment
                                 </router-link>
                             </li>

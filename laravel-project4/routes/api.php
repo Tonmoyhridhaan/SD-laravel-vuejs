@@ -34,6 +34,10 @@ Route::get('get-user/{id}', [AuthController::class, 'getUserById']);
     Route::post('create-section', [AdminController::class, 'createSection']);
     Route::post('create-session', [AdminController::class, 'createSession']);
 
+#manage
+    Route::get('get-session', [AdminController::class, 'getSession']);
+    Route::post('update-session', [AdminController::class, 'updateSession']);
+
 
 //Teacher :---------------------------------------------------------------
 
@@ -42,6 +46,6 @@ Route::get('get-user/{id}', [AuthController::class, 'getUserById']);
     Route::post('get-assigned-teacher-course/{id}', [TeacherController::class, 'getCourse']);
     Route::post('get-assigned-teacher-section/{id}', [TeacherController::class, 'getSection']);
     Route::post('create-distribution', [TeacherController::class, 'createDistribution']);
-
+    Route::get('get-assigned-distribution/{id}', [TeacherController::class, 'getDistribution']);
 
 //Student :---------------------------------------------------------------

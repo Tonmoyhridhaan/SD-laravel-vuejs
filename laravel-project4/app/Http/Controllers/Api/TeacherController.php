@@ -94,4 +94,21 @@ class TeacherController extends Controller
         ]);
     }
 #<end>------------------------------------------------------------------------------------------
+#<start> For Show Distribution-------------------------------------------------------------
+    public function getDistribution($id){ 
+        // SELECT * FROM `num_dist` WHERE teacher_id = $teacher_id
+        $distList = DB::table('num_dists')
+                    ->join('sessions', 'num_dists.session_id', '=', 'sessions.id')
+                    ->join('sections', 'num_dists.section_id', '=', 'sections.id')
+                    ->join('courses', 'num_dists.course_id', '=', 'courses.id')
+                    ->where('num_dists.teacher_id', '=', $id)
+                    ->select('num_dists.id', 'sessions.name as session_name', 'sections.name as section_name', 'courses.name as course_name', 'num_dists.catagory_name', 'num_dists.marks')
+                    ->get();
+
+        return response()->json([
+            'distList'=> $distList,
+            'msg' => 'success'
+        ]);
+    }
+#<end>------------------------------------------------------------------------------------------
 }

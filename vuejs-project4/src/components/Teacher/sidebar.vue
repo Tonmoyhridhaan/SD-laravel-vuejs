@@ -29,6 +29,11 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <router-link to="/teacher/assign-marks">
+                            <i class="fa fa-home" aria-hidden="true"></i> Assign Marks
+                        </router-link>
+                    </li>
                     <li class="header">Another Menu</li>
                     <li>
                     <router-link to="#">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2021 at 10:37 PM
+-- Generation Time: Apr 30, 2021 at 11:18 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -104,10 +104,10 @@ INSERT INTO `enrollments` (`id`, `student_id`, `course_id`, `type_id`, `section_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `marks_assign`
+-- Table structure for table `marks_assigns`
 --
 
-CREATE TABLE `marks_assign` (
+CREATE TABLE `marks_assigns` (
   `id` int(11) NOT NULL,
   `student_id` int(11) DEFAULT NULL,
   `teacher_id` int(11) DEFAULT NULL,
@@ -121,10 +121,10 @@ CREATE TABLE `marks_assign` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `marks_assign`
+-- Dumping data for table `marks_assigns`
 --
 
-INSERT INTO `marks_assign` (`id`, `student_id`, `teacher_id`, `course_id`, `section_id`, `session_id`, `dist_id`, `marks`, `created_at`, `updated_at`) VALUES
+INSERT INTO `marks_assigns` (`id`, `student_id`, `teacher_id`, `course_id`, `section_id`, `session_id`, `dist_id`, `marks`, `created_at`, `updated_at`) VALUES
 (6, 19, 16, 24, 13, 3, 43, 9, '2021-04-21 04:02:58', '0000-00-00 00:00:00'),
 (7, 19, 16, 24, 13, 3, 44, 8, '2021-04-21 04:02:58', '0000-00-00 00:00:00'),
 (8, 19, 16, 24, 13, 3, 45, 8, '2021-04-21 04:02:58', '0000-00-00 00:00:00'),
@@ -394,11 +394,11 @@ INSERT INTO `teacher_assigns` (`id`, `teacher_id`, `section_id`, `course_id`, `s
 (5, 12, 10, 18, 2, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
 (7, 12, 7, 13, 1, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
 (8, 15, 13, 27, 3, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
-(9, 16, 14, 24, 3, 1, '2021-04-25 20:27:54', '0000-00-00 00:00:00'),
+(9, 16, 14, 24, 3, 1, '2021-04-26 19:08:57', '0000-00-00 00:00:00'),
 (10, 17, 13, 25, 3, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
 (11, 18, 13, 23, 3, 1, '2021-04-25 20:19:47', '0000-00-00 00:00:00'),
-(12, 16, 13, 24, 3, 1, '2021-04-25 20:27:54', '0000-00-00 00:00:00'),
-(13, 16, 15, 24, 3, 1, '2021-04-25 20:29:36', '0000-00-00 00:00:00'),
+(12, 16, 13, 24, 3, 1, '2021-04-26 19:08:57', '0000-00-00 00:00:00'),
+(13, 16, 15, 24, 3, 1, '2021-04-27 10:30:43', '0000-00-00 00:00:00'),
 (14, 2, 1, 3, 7, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
 (16, 4, 1, 1, 7, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
 (17, 5, 1, 2, 7, 1, '2021-04-21 04:05:21', '0000-00-00 00:00:00'),
@@ -513,9 +513,9 @@ ALTER TABLE `enrollments`
   ADD KEY `type_id` (`type_id`);
 
 --
--- Indexes for table `marks_assign`
+-- Indexes for table `marks_assigns`
 --
-ALTER TABLE `marks_assign`
+ALTER TABLE `marks_assigns`
   ADD PRIMARY KEY (`id`),
   ADD KEY `teacher_id` (`teacher_id`),
   ADD KEY `session_id` (`session_id`),
@@ -585,9 +585,9 @@ ALTER TABLE `enrollments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `marks_assign`
+-- AUTO_INCREMENT for table `marks_assigns`
 --
-ALTER TABLE `marks_assign`
+ALTER TABLE `marks_assigns`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
@@ -642,15 +642,15 @@ ALTER TABLE `enrollments`
   ADD CONSTRAINT `enrollments_ibfk_6` FOREIGN KEY (`type_id`) REFERENCES `types` (`id`);
 
 --
--- Constraints for table `marks_assign`
+-- Constraints for table `marks_assigns`
 --
-ALTER TABLE `marks_assign`
-  ADD CONSTRAINT `marks_assign_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `marks_assign_ibfk_2` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`),
-  ADD CONSTRAINT `marks_assign_ibfk_3` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `marks_assign_ibfk_4` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`),
-  ADD CONSTRAINT `marks_assign_ibfk_5` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`),
-  ADD CONSTRAINT `marks_assign_ibfk_6` FOREIGN KEY (`dist_id`) REFERENCES `num_dists` (`id`);
+ALTER TABLE `marks_assigns`
+  ADD CONSTRAINT `marks_assigns_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `marks_assigns_ibfk_2` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`),
+  ADD CONSTRAINT `marks_assigns_ibfk_3` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `marks_assigns_ibfk_4` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`),
+  ADD CONSTRAINT `marks_assigns_ibfk_5` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`),
+  ADD CONSTRAINT `marks_assigns_ibfk_6` FOREIGN KEY (`dist_id`) REFERENCES `num_dists` (`id`);
 
 --
 -- Constraints for table `num_dists`

@@ -1,19 +1,6 @@
 <template>
     <div class="container">
-        <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
-                <div class="card text-white bg-dark">
-                    <div class="card-header">Distribution</div>
-                    <div class="card-body">
-                        <!-- <div>
-                            <h5 class="card-title text-center" >Distribution</h5>
-                            <hr>
-                        </div> -->
-                        <router-view></router-view>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <router-view></router-view>        
     </div>  
 </template>
 

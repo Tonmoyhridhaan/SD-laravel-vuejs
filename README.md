@@ -62,3 +62,18 @@ Vue.prototype.$http = axios
 
 ### Database
 Export updated database ```project_04``` to Localhost Server
+
+### Bootstrap vue Integration
+``` bash
+# individual project integration
+# With npm
+npm install vue bootstrap bootstrap-vue
+```
+> Add to : ``` src/main.js ```
+``` bash
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue' 
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+```

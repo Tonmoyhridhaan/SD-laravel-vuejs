@@ -19,7 +19,7 @@
                             </thead>
                             <tbody>
                                 <tr v-for="dist in dist_list"   :key="dist.id">
-                                  <td scope="row" ><strong>{{i}}</strong></td>
+                                  <td scope="row" ><strong>{{dist.id}}</strong></td>
                                   <td>{{ dist.course_name }}</td>
                                   <td>{{ dist.session_name }}</td>
                                   <td>{{ dist.section_name }}</td>

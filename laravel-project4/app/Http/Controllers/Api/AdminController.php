@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Course;
 use App\Models\Section;
 use App\Models\Session;
+use App\Models\Type;
+use App\Models\Enrollment;
 use DB;
 
 class AdminController extends Controller
@@ -104,6 +106,64 @@ class AdminController extends Controller
                     'msg' => 'Session deactivated'
                 ]);
             }
+        }
+    }
+
+    public function getType(){
+        $types = Type::get();
+        return response() -> json([
+            'types' => $types,
+            'msg' => 'types Successfully retrived'
+        ]);
+    }
+
+    public function updateType(Request $request){
+        $id = $request->id;
+        $status = $request->status;
+        $obj = Type::find($id);
+        if($status==0){
+            $obj->status=1;
+            if($obj->save()){
+                return response() -> json([
+                    'data' => $obj,
+                    'msg' => 'Type Activated'
+                ]);
+            }
+        }
+        else if($status==1){
+            $obj->status=0;
+            if($obj->save()){
+                return response() -> json([
+                    'data' => $obj,
+                    'msg' => 'Type deactivated'
+                ]);
+            }
+        }
+    }
+    public function getEnrollment(){
+        $enrolls = DB::table('enrollments as e')
+                ->where('e.status', '=', 0)
+                ->join('users as s','e.student_id','s.id')
+                ->join('courses as c','e.course_id','c.id')
+                ->join('types as t','e.type_id','t.id')
+                ->join('sections as sec','e.section_id','sec.id')
+                ->join('sessions as ses','e.session_id','ses.id')
+                ->select('e.id as id','s.id as student','c.name as course','t.name as type','sec.name as section','ses.name as session')
+                ->get();
+        return response() -> json([
+            'enrolls' => $enrolls,
+            'msg' => 'enrollments retrived'
+        ]);
+    }
+    public function updateEnrollment(Request $request){
+        $id = $request->id;
+        $obj = Enrollment::find($id);
+        $obj->status=1;
+        if($obj->save()){
+            return response() -> json([
+                'data' => $obj,
+                'msg' => 'Enrollemnt Approved'
+            ]);
         }
     }
 }

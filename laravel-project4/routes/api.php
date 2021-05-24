@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\TeacherController;
+use App\Http\Controllers\Api\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,4 +57,13 @@ Route::get('get-user/{id}', [AuthController::class, 'getUserById']);
     Route::post('get-assigned-dist-teacher-course/{id}', [TeacherController::class, 'getDistCourse']);
     Route::post('get-assigned-dist-teacher-section/{id}', [TeacherController::class, 'getDistSection']);
     Route::post('get-assigned-dist-teacher/{id}', [TeacherController::class, 'getTeacherDist']);
+    Route::post('update-student-marks', [TeacherController::class, 'updateStdMarks']);
+
+
 //Student :---------------------------------------------------------------
+
+#Enrollment
+Route::get('get-open-sessions', [StudentController::class, 'getSession']);
+Route::get('get-course-list', [StudentController::class, 'getCourseList']);
+Route::post('assign-enroll', [StudentController::class, 'assignEnroll']);
+Route::post('get-pending-list/{id}', [StudentController::class, 'getPendingList']);

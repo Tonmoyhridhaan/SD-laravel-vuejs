@@ -1,19 +1,12 @@
 <template>
     <div class="container">
-        <router-view></router-view>
+        <router-view></router-view>        
     </div>  
 </template>
 
 <script>
 export default {
-     data() {
-        return {
-             role : null
-        }
-    },
-    async created() {
-        this.role = localStorage.getItem('role');
-    }
+
 }
 </script>
 
@@ -25,7 +18,7 @@ export default {
 
 body {
   background: #525252;
-  background: linear-gradient(to right, #414141ee, #1d1d1d);
+  background: linear-gradient(to right, #424242ee, #131313);
 }
 
 .card {
@@ -43,6 +36,5 @@ body {
 .card-signin .card-body {
   padding: 2rem;
 }
-
 
 </style>

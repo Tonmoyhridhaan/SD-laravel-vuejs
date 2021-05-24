@@ -1,5 +1,14 @@
 <template>
     <div>
+        <br>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Distribution</li>
+                <li class="breadcrumb-item active" aria-current="page">Marks</li>
+            </ol>
+        </nav>
+        <hr>
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
                 <div class="card text-white bg-dark">
@@ -216,6 +225,11 @@ export default {
 :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem;
+}
+.breadcrumb {
+    margin-bottom: 0;
+    background-color:  #00000036;
+    font-weight: bold;
 }
 
 .card-signin {

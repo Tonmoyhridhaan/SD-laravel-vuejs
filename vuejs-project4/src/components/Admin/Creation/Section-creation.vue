@@ -1,30 +1,48 @@
 <template>
     <div>
-        <h5 class="card-title text-center">Create Section</h5>
-        <form @submit.prevent="createSection" class="form-signin">
-            <div class="form-label-group">
-                <input type="text" id="inputName" v-model="name" class="form-control" placeholder="Section Name" required autofocus>
-                <label for="inputName">Name</label>
-            </div>
+        <br>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Creation</li>
+                <li class="breadcrumb-item active" aria-current="page">Section</li>
+            </ol>
+        </nav>
+        <hr>
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
+                <div class="card text-white bg-dark">
+                    <div class="card-header">Creation</div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Create Section</h5>
+                        <form @submit.prevent="createSection" class="form-signin">
+                            <div class="form-group">
+                                <input type="text" id="inputName" v-model="name" class="form-control text-center text-white bg-dark" placeholder="Section Name. EG: C6A" required autofocus>
+                                <!-- <label for="inputName">Name</label> -->
+                            </div>
 
-            <div class="">
-                <label for="inputSemester">Semester</label>
-                <select id="inputSemester" v-model="sem" class="form-control" required>
-                    <option v-for="sem in sems" :key="sem.id" :value="sem.id">{{sem.id}}</option>
-                </select>
-                <label for="inputSemester"></label>
-            </div>
+                            <div class="form-group">
+                                <label for="inputSemester">Semester</label>
+                                <select id="inputSemester" v-model="sem" class="form-control text-white bg-dark" required>
+                                    <option v-for="sem in sems" :key="sem.id" :value="sem.id">{{sem.id}}</option>
+                                </select>
+                                <!-- <label for="inputSemester"></label> -->
+                            </div>
 
-            <button class="btn btn-lg btn-warning btn-block text-uppercase" type="submit">Create</button>
+                            <button class="btn btn-lg btn-info btn-block text-uppercase" type="submit">Create</button>
 
-            <div v-if="msg" class="form-label-group">
-                <hr>
-                <div class="alert alert-success alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>{{ msg }}</strong>
+                            <div v-if="msg" class="form-group">
+                                <hr>
+                                <div class="alert alert-success alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <strong>{{ msg }}</strong>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </template>
 
@@ -95,16 +113,16 @@ export default {
 
 .form-signin .btn {
   font-size: 80%;
-  border-radius: 5rem;
+  border-radius: 0.5rem;
   letter-spacing: .1rem;
   font-weight: bold;
   padding: 1rem;
   transition: all 0.2s;
 }
 
-.form-label-group {
+.form-group {
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .form-label-group input,

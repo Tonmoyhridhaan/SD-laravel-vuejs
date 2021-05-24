@@ -20,6 +20,9 @@ import EnrollmentStatus from '@/components/Admin/Manage/EnrollmentStatus'
 import StudentDashboard from '@/components/Student/Dashboard'
 import StudentSidebar from '@/components/Student/Sidebar'
 import SInformation from '@/components/Student/Information'
+import Enrollment from '@/components/Student/Enrollment/Enrollment'
+import Enroll from '@/components/Student/Enrollment/Enroll'
+import Pending from '@/components/Student/Enrollment/PendingEnrollment'
 
 import TeacherDashboard from '@/components/Teacher/Dashboard'
 import TeacherSidebar from '@/components/Teacher/Sidebar'
@@ -130,6 +133,22 @@ export default new Router({
           path: 'information',
           name: 'Information',
           component: SInformation
+        },
+        {
+          path: 'enrollment',
+          component: Enrollment,
+          children: [
+            {
+              path: 'enroll',
+              name: 'enroll',
+              component: Enroll
+            },
+            {
+              path: 'pending',
+              name: 'pending',
+              component: Pending
+            }
+          ]
         }
       ]
     },

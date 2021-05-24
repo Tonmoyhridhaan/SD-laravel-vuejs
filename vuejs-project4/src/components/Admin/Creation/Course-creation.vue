@@ -1,47 +1,65 @@
 <template>
     <div>
-        <h5 class="card-title text-center">Create Course</h5>
-        <form @submit.prevent="createCourse" class="form-signin">
-            <div class="form-label-group">
-                <input type="text" id="inputName" v-model="name" class="form-control" placeholder="Course Name" required autofocus>
-                <label for="inputName">Name</label>
-            </div>
-            <div class="form-label-group">
-                <input type="text" id="inputCode" v-model="code" class="form-control" placeholder="Course Code" required autofocus>
-                <label for="inputCode">Code</label>
-            </div>
+        <br>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Creation</li>
+                <li class="breadcrumb-item active" aria-current="page">Course</li>
+            </ol>
+        </nav>
+        <hr>
+        <div class="row">
+              <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
+                  <div class="card text-white bg-dark">
+                      <div class="card-header">Creation</div>
+                      <div class="card-body">
+                          <h5 class="card-title text-center">Create Course</h5>
+                          <form @submit.prevent="createCourse" class="form-signin">
+                              <div class="form-group">
+                                  <input type="text" v-model="name" class="form-control text-center text-white bg-dark" placeholder="Course Name" required autofocus>
+                                  <!-- <label for="inputName">Name</label> -->
+                              </div>
+                              <div class="form-group">
+                                  <input type="text" v-model="code" class="form-control text-center text-white bg-dark" placeholder="Course Code" required autofocus>
+                                  <!-- <label for="inputCode">Code</label> -->
+                              </div>
 
-            <div class="form-label-group">
-                <input type="text" id="inputCredit" v-model="credit" class="form-control" placeholder="Course Credit" required>
-                <label for="inputCredit">Credit</label>
-            </div>
+                              <div class="form-group">
+                                  <input type="text" v-model="credit" class="form-control text-center text-white bg-dark" placeholder="Course Credit" required>
+                                  <!-- <label for="inputCredit">Credit</label> -->
+                              </div>
 
-            <div class="">
-                 <label for="inputType">Course Type</label>
-                <select id="inputType" v-model="type" class="form-control" required>
-                    <option v-for="type in types" :key="type.id" :value="type.value">{{type.name}}</option>
-                </select>
-                <label for="inputType"></label>
-            </div>
+                              <div class="">
+                                    <label for="inputType">Course Type</label>
+                                  <select v-model="type" class="form-control text-white bg-dark" required>
+                                      <option v-for="type in types" :key="type.id" :value="type.value">{{type.name}}</option>
+                                  </select>
+                                  <label for="inputType"></label>
+                              </div>
 
-            <div class="">
-                <label for="inputSemester">Semester</label>
-                <select id="inputSemester" v-model="sem" class="form-control" required>
-                    <option v-for="sem in sems" :key="sem.id" :value="sem.id">{{sem.id}}</option>
-                </select>
-                <label for="inputSemester"></label>
-            </div>
+                              <div class="">
+                                  <label for="inputSemester">Semester</label>
+                                  <select id="inputSemester" v-model="sem" class="form-control text-white bg-dark" required>
+                                      <option v-for="sem in sems" :key="sem.id" :value="sem.id">{{sem.id}}</option>
+                                  </select>
+                                  <label for="inputSemester"></label>
+                              </div>
 
-            <button class="btn btn-lg btn-warning btn-block text-uppercase" type="submit">Create</button>
+                              <button class="btn btn-lg btn-info btn-block text-uppercase" type="submit">Create</button>
 
-            <div v-if="msg" class="form-label-group">
-                <hr>
-                <div class="alert alert-success alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>{{ msg }}</strong>
-                </div>
-            </div>
-        </form>
+                              <div v-if="msg" class="form-label-group">
+                                  <hr>
+                                  <div class="alert alert-success alert-dismissible">
+                                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                      <strong>{{ msg }}</strong>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+        </div>
     </div>
 </template>
 
@@ -101,10 +119,16 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style>
 :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem;
+}
+
+.breadcrumb {
+    margin-bottom: 0;
+    background-color:  #00000036;
+    font-weight: bold;
 }
 
 .card-signin {
@@ -129,7 +153,7 @@ export default {
 
 .form-signin .btn {
   font-size: 80%;
-  border-radius: 5rem;
+  border-radius: 0.5rem;
   letter-spacing: .1rem;
   font-weight: bold;
   padding: 1rem;

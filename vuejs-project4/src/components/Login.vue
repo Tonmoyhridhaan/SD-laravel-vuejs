@@ -2,21 +2,21 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
-                <div class="card card-signin my-5">
+                <div class="card card-signin my-5 text-white bg-dark">
                 <div class="card-body">
                     <h5 class="card-title text-center">Sign In</h5>
                     <form @submit.prevent="handle_submit" class="form-signin">
-                      <div class="form-label-group">
-                          <input type="email" id="inputEmail" v-model="email" class="form-control" placeholder="Email address" required autofocus>
+                      <div class="form-label-group text-white bg-dark">
+                          <input type="email" id="inputEmail" v-model="email" class="form-control text-white bg-dark" placeholder="Email address" required autofocus>
                           <label for="inputEmail">Email address</label>
                       </div>
 
-                      <div class="form-label-group">
-                          <input type="password" id="inputPassword" v-model="password" class="form-control" placeholder="Password" required>
+                      <div class="form-label-group text-white bg-dark">
+                          <input type="password" id="inputPassword" v-model="password" class="form-control text-white bg-dark" placeholder="Password" required>
                           <label for="inputPassword">Password</label>
                       </div>
 
-                      <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                      <button class="btn btn-lg btn-primary btn-block text-uppercase " type="submit">Sign in</button>
                     </form>
                 </div>
                 </div>
@@ -83,13 +83,13 @@ export default {
 
 body {
   background: #007bff;
-  background: linear-gradient(to right, #0062E6, #33AEFF);
+  background: linear-gradient(to right, #000f22, #005085);
 }
 
 .card-signin {
   border: 0;
   border-radius: 1rem;
-  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0rem 2rem 0 rgba(255, 255, 255, 0.342);
 }
 
 .card-signin .card-title {
@@ -139,10 +139,10 @@ body {
   margin-bottom: 0;
   /* Override default `<label>` margin */
   line-height: 1.5;
-  color: #495057;
+  color: #e2e2e2;
   border: 1px solid transparent;
   border-radius: .25rem;
-  transition: all .1s ease-in-out;
+  transition: all .5s ease-in-out;
 }
 
 .form-label-group input::-webkit-input-placeholder {
@@ -174,17 +174,7 @@ body {
   padding-top: calc(var(--input-padding-y) / 3);
   padding-bottom: calc(var(--input-padding-y) / 3);
   font-size: 12px;
-  color: #777;
-}
-
-.btn-google {
-  color: white;
-  background-color: #ea4335;
-}
-
-.btn-facebook {
-  color: white;
-  background-color: #3b5998;
+  color: rgb(168, 186, 214);
 }
 
 /* Fallback for Edge

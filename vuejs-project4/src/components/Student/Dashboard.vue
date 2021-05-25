@@ -23,9 +23,13 @@ export default {
   --input-padding-y: .75rem;
 }
 
-body {
+/* body {
   background: #2286b4;
   background: linear-gradient(to right, #0e4a6d, #40d2ff);
+} */
+body {
+  background: #525252;
+  background: linear-gradient(to right, #424242ee, #131313);
 }
 
 .card-signin {

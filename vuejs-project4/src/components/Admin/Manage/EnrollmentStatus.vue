@@ -1,56 +1,65 @@
+
 <template>
     <div>
-        <h5 class="card-title text-center">Manage Course Type</h5>
-        <div class="col-md">
-            <h4 class="card-title text-center"><b>Active Type</b></h4>
-            <form @submit.prevent="activeType" class="form-signin">
+        <br>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Manage</li>
+                <li class="breadcrumb-item active" aria-current="page">Course Type</li>
+            </ol>
+        </nav>
+        <hr>
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
+                <div class="card text-white bg-dark">
+                    <div class="card-header">Manage</div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Manage Course Type</h5>
+                         <form @submit.prevent="activeType" class="form-signin">
 
-                <div class="">
-                    <label for="inputSession">Choose Type</label>
-                    <select id="inputSession" v-model="type" class="form-control" required>
-                        <option v-for="t in types" v-if="!t.status" :key="t.id" :value="t.id" >{{t.name}}</option>
-                    </select>
-                    <label for=""></label>
-                </div>
+                          <div class="">
+                              <label for="inputSession">Choose Type</label>
+                              <select id="inputSession" v-model="type" class="form-control text-white bg-dark" required>
+                                  <option v-for="t in types" v-if="!t.status" :key="t.id" :value="t.id" >{{t.name}}</option>
+                              </select>
+                              <label for=""></label>
+                          </div>
 
-                <button class="btn btn-lg btn-success btn-block text-uppercase" type="submit">Active</button>
+                          <button class="btn btn-lg btn-success btn-block text-uppercase" type="submit">Active</button>
 
-                <!-- <div v-if="msg" class="form-label-group">
-                    <hr>
-                    <div class="alert alert-success alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>{{ msg }}</strong>
+                          <!-- <div v-if="msg" class="form-label-group">
+                              <hr>
+                              <div class="alert alert-success alert-dismissible">
+                                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                  <strong>{{ msg }}</strong>
+                              </div>
+                          </div> -->
+                      </form>
+                      <br>
+                       <form @submit.prevent="deactiveType" class="form-signin">
+                          <div class="">
+                              <label for="inputSemester">Choose Type</label>
+                              <select id="inputSemester" v-model="type" class="form-control text-white bg-dark" required>
+                                  <option v-for="t in types" v-if="t.status" :key="t.id" :value="t.id">{{t.name}}</option>
+                              </select>
+                              <label for=""></label>
+                          </div>
+
+                          <button class="btn btn-lg btn-danger btn-block text-uppercase" type="submit">Deactive</button>
+
+                          <!-- <div v-if="msg" class="form-label-group">
+                              <hr>
+                              <div class="alert alert-success alert-dismissible">
+                                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                  <strong>{{ msg }}</strong>
+                              </div>
+                          </div> -->
+                      </form>
                     </div>
-                </div> -->
-            </form>
-        </div>
-        <div class="row"><hr></div>
-         <div class="col-md">
-             <h4 class="card-title text-center"><b>Deactive Type</b></h4>
-            <form @submit.prevent="deactiveType" class="form-signin">
-
-                 <div class="">
-                    <label for="inputSemester">Choose Type</label>
-                    <select id="inputSemester" v-model="type" class="form-control" required>
-                        <option v-for="t in types" v-if="t.status" :key="t.id" :value="t.id">{{t.name}}</option>
-                    </select>
-                    <label for=""></label>
                 </div>
-
-                <button class="btn btn-lg btn-danger btn-block text-uppercase" type="submit">Deactive</button>
-
-                <!-- <div v-if="msg" class="form-label-group">
-                    <hr>
-                    <div class="alert alert-success alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>{{ msg }}</strong>
-                    </div>
-                </div> -->
-            </form>
+            </div>
         </div>
-
-
-
     </div>
 </template>
 
@@ -111,15 +120,21 @@ export default {
         
 }
 </script>
-<style scoped>
+<style>
 :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem;
 }
 
+.breadcrumb {
+    margin-bottom: 0;
+    background-color:  #00000036;
+    font-weight: bold;
+}
+
 .card-signin {
   border: 0;
-  border-radius: 4rem;
+  border-radius: 1rem;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -139,7 +154,7 @@ export default {
 
 .form-signin .btn {
   font-size: 80%;
-  border-radius: 5rem;
+  border-radius: 0.5rem;
   letter-spacing: .1rem;
   font-weight: bold;
   padding: 1rem;

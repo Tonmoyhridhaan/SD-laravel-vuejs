@@ -1,3 +1,4 @@
+
 <template>
     <div>
         <br>
@@ -5,7 +6,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Manage</li>
-                <li class="breadcrumb-item active" aria-current="page">Session</li>
+                <li class="breadcrumb-item active" aria-current="page">Teacher Assign</li>
             </ol>
         </nav>
         <hr>
@@ -14,48 +15,45 @@
                 <div class="card text-white bg-dark">
                     <div class="card-header">Manage</div>
                     <div class="card-body">
-                        <h5 class="card-title text-center">Manage Session</h5>
-                        <form @submit.prevent="activeSession" class="form-signin">
+                        <h5 class="card-title text-center">Teacher Assign</h5>
+                         <form @submit.prevent="teacherAssign" class="form-signin">
+
+                          <div class="">
+                              <label for="inputTeacher">Choose Teacher</label>
+                              <select id="inputTeacher" v-model="teacher" class="form-control text-white bg-dark" required>
+                                  <option v-for="t in teachers" :key="t.id" :value="t.id" >{{t.name}}</option>
+                              </select>
+                              <label for=""></label>
+                          </div>
+
+                          <div class="">
+                              <label for="inputSemester">Choose Course</label>
+                              <select id="inputSemester" v-model="course" class="form-control text-white bg-dark" required>
+                                  <option v-for="c in courses" :key="c.id" :value="c.id">{{c.name}}</option>
+                              </select>
+                              <label for=""></label>
+                          </div>
+
+                           <div class="">
+                              <label for="inputSection">Choose Section</label>
+                              <select id="inputSection" v-model="section" class="form-control text-white bg-dark" required>
+                                  <option v-for="s in sections" :key="s.id" :value="s.id">{{s.name}}</option>
+                              </select>
+                              <label for=""></label>
+                          </div>
 
                           <div class="">
                               <label for="inputSession">Choose Session</label>
                               <select id="inputSession" v-model="session" class="form-control text-white bg-dark" required>
-                                  <option v-for="s in sessions" v-if="!s.status" :key="s.id" :value="s.id" >{{s.name}}</option>
+                                  <option v-for="s in sessions" :key="s.id" :value="s.id">{{s.name}}</option>
                               </select>
                               <label for=""></label>
                           </div>
-
-                          <button class="btn btn-lg btn-success btn-block text-uppercase" type="submit">Active</button>
-
-                          <!-- <div v-if="msg" class="form-label-group">
-                              <hr>
-                              <div class="alert alert-success alert-dismissible">
-                                  <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                  <strong>{{ msg }}</strong>
-                              </div>
-                          </div> -->
+                          <br>
+                          <button class="btn btn-lg btn-info btn-block text-uppercase" type="submit">Assign</button>
                       </form>
                       <br>
-                      <form @submit.prevent="deactiveSession" class="form-signin">
-
-                          <div class="">
-                              <label for="inputSemester">Choose Session</label>
-                              <select id="inputSemester" v-model="session" class="form-control text-white bg-dark" required>
-                                  <option v-for="s in sessions" v-if="s.status" :key="s.id" :value="s.id">{{s.name}}</option>
-                              </select>
-                              <label for=""></label>
-                          </div>
-
-                          <button class="btn btn-lg btn-danger btn-block text-uppercase" type="submit">Deactive</button>
-
-                          <!-- <div v-if="msg" class="form-label-group">
-                              <hr>
-                              <div class="alert alert-success alert-dismissible">
-                                  <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                  <strong>{{ msg }}</strong>
-                              </div>
-                          </div> -->
-                      </form>
+                      
                     </div>
                 </div>
             </div>
@@ -67,56 +65,55 @@
 export default {
     data() {
         return {
+            teachers: [],
+            courses: [],
+            sections: [],
             sessions: [],
+            teacher: null,
+            course: null,
+            section: null,
             session: null,
             msg: null
         }
     },
     mounted(){
-        this.getSession();
+        this.getAll();
         
     },
     methods: {
-        getSession(){
-            const baseURI = 'http://127.0.0.1:8000/api/get-session'
+        getAll(){
+            const baseURI = 'http://127.0.0.1:8000/api/get-all-for-teacher-assign'
             this.$http.get(baseURI)
             .then((res)=>{
-                this.sessions = res.data.sessions
+                this.teachers = res.data.teacher
+                this.courses = res.data.course
+                this.sections = res.data.section
+                this.sessions = res.data.session
                 this.msg = res.data.msg
             })
             
-            //console.log(this.sessions);
         },
-        async activeSession() {
-            const baseURI = 'http://127.0.0.1:8000/api/update-session'
+        async teacherAssign() {
+            const baseURI = 'http://127.0.0.1:8000/api/teacher-assign'
             this.$http.post(baseURI, {
-                id : this.session,
-                status: 0
+                teacher : this.teacher,
+                course : this.course,
+                section : this.section,
+                session : this.session,
             })
             .then((res)=>{
                 this.msg = res.data.msg;
-                this.session = null;
+                this.teacher= null;
+                this.course= null;
+                this.section= null;
+                this.session= null;
                 //this.sessions = [];
                 alert(this.msg)
+                
             })
             
-            
-         },
-        async deactiveSession() {
-            const baseURI = 'http://127.0.0.1:8000/api/update-session'
-            this.$http.post(baseURI, {
-                id : this.session,
-                status: 1
-            })
-            .then((res)=>{
-                this.msg = res.data.msg;
-                this.session = null;
-                //this.sessions = [];
-                alert(this.msg)
-            })
-            
-         }
-    },
+        }
+    }
         
 }
 </script>

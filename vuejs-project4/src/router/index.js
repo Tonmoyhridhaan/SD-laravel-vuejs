@@ -16,6 +16,7 @@ import Manage from '@/components/Admin/Manage/Manage'
 import Session from '@/components/Admin/Manage/Session'
 import StudentEnrollment from '@/components/Admin/Manage/StudentEnrollment'
 import EnrollmentStatus from '@/components/Admin/Manage/EnrollmentStatus'
+import TeacherAssign from '@/components/Admin/Manage/TeacherAssign'
 
 import StudentDashboard from '@/components/Student/Dashboard'
 import StudentSidebar from '@/components/Student/Sidebar'
@@ -23,6 +24,7 @@ import SInformation from '@/components/Student/Information'
 import Enrollment from '@/components/Student/Enrollment/Enrollment'
 import Enroll from '@/components/Student/Enrollment/Enroll'
 import Pending from '@/components/Student/Enrollment/PendingEnrollment'
+import Results from '@/components/Student/Results'
 
 import TeacherDashboard from '@/components/Teacher/Dashboard'
 import TeacherSidebar from '@/components/Teacher/Sidebar'
@@ -115,6 +117,11 @@ export default new Router({
               path: 'enrollment-status',
               name: 'EnrollmentStatus',
               component : EnrollmentStatus
+            },
+            {
+              path: 'teacher-assign',
+              name: 'TeacherAssign',
+              component : TeacherAssign
             }
           ]
         }
@@ -133,6 +140,11 @@ export default new Router({
           path: 'information',
           name: 'Information',
           component: SInformation
+        },
+        {
+          path: 'results',
+          name: 'Results',
+          component: Results
         },
         {
           path: 'enrollment',

@@ -5,6 +5,13 @@
                 <div class="sidebar-logo">
                     Teacher Panel
                 </div>
+                <div class="sidebar-logo1">
+                    <li class="header btn btn-dark btn-block"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg> &emsp; <strong>{{ user.name }}</strong>
+                    </li>
+                </div>
                 <ul class="sidebar-navigation">
                     <li class="header">Navigation</li>
                     <li>
@@ -117,6 +124,14 @@ export default {
         else if(role=='student'){
             this.$router.push('/student/dashboard');
         }
+        const baseURI = 'http://127.0.0.1:8000/api/get-user/' + token;
+        const response = await this.$http.get(baseURI, {
+            headers: {
+                Authorization: 'Bearer' + token
+            }
+        });
+        this.user = response.data.user;
+        console.log(response.data.user);
         // const baseURI = 'http://127.0.0.1:8000/api/get-user/' + token;
         // const response = await this.$http.get(baseURI);
         // console.log(response.data.user);
@@ -132,6 +147,11 @@ export default {
   padding: 10px 15px 10px 30px;
   font-size: 20px;
   background-color: #363636;
+}
+.sidebar-logo1 {
+  padding: 10px 15px 10px 30px;
+  font-size: 20px;
+  background-color: #131212;
 }
 .sidebar-navigation li::before {
   background-color: #363636;

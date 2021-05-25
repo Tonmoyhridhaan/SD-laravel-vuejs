@@ -10,6 +10,7 @@ use App\Models\Section;
 use App\Models\Session;
 use App\Models\Type;
 use App\Models\Enrollment;
+use App\Models\Teacher_assign;
 use DB;
 
 class AdminController extends Controller
@@ -157,12 +158,43 @@ class AdminController extends Controller
     }
     public function updateEnrollment(Request $request){
         $id = $request->id;
+        $status = $request->status;
         $obj = Enrollment::find($id);
-        $obj->status=1;
+        $obj->status=$status;
+        if($status==1) $msg = 'Enrollemnt Approved';
+        else if($status==2) $msg = 'Enrollemnt Rejected';
         if($obj->save()){
             return response() -> json([
                 'data' => $obj,
-                'msg' => 'Enrollemnt Approved'
+                'msg' => $msg
+            ]);
+        }
+    }
+    public function getAll(){
+        $teacher = User::where('role','=','teacher')->get();
+        $course = Course::get();
+        $section = Section::get();
+        $session = Session::where('status','=',1)->get();
+
+        return response() -> json([
+            'teacher' => $teacher,
+            'course' => $course,
+            'section' => $section,
+            'session' => $session,
+            'msg' => 'types successfully retrived'
+        ]);
+    }
+    public function teacherAssign(Request $request){
+        $obj = new Teacher_assign();
+        $obj->teacher_id = $request->teacher;
+        $obj->section_id = $request->section;
+        $obj->course_id = $request->course;
+        $obj->session_id = $request->session;
+        $obj->status = 1;
+        if($obj->save()){
+            return response() -> json([
+                'data' => $obj,
+                'msg' => 'Teacher Successfully Asssigned'
             ]);
         }
     }

@@ -84,7 +84,7 @@ class StudentController extends Controller
             $enroll->session_id    = $r->session_id ;
             $enroll->status = 0 ;
             
-            // if($enroll->save()) {
+            if($enroll->save()) {
                 $distribution = DB::table('num_dists')
                                 ->where('num_dists.section_id', '=', $r->section_id[$i])
                                 ->where('num_dists.course_id', '=', $r->course_id[$i])
@@ -102,10 +102,10 @@ class StudentController extends Controller
                     $assign->session_id    = $r->session_id ;
                     $assign->dist_id    = $j->dist_id;
                     $assign->marks    = 0;
-                    // $assign->save();
+                    $assign->save();
                     // $data[$i]['assign'][$k++] = $assign;
                 }
-            // }
+            }
             // $data[$i]['enroll'] = $enroll;
         }
         return response()->json([
@@ -127,10 +127,51 @@ class StudentController extends Controller
             $i->SN = $k++;
             if($i->st == 0) { $i->Status = "Pending"; }
             else if($i->st == 1) { $i->Status = "Approved"; }
-            else { $i->Status = "Rejected"; }
+            else if($i->st == 2) { $i->Status = "Rejected"; }
         }
         return response()->json([
             'list'=> $list,
+            'msg' => 'success'
+        ]);
+    }
+    public function getResult(Request $r, $id){ 
+        $list = DB::table('marks_assigns')
+                    ->join('courses', 'marks_assigns.course_id', '=', 'courses.id')
+                    ->where('marks_assigns.student_id', '=', $id)
+                    ->where('marks_assigns.session_id', '=', $r->session_id)
+                    ->select('courses.name as crsName', 'marks_assigns.marks')
+                    ->get();
+        $obj = DB::table('marks_assigns')
+                    ->join('courses', 'marks_assigns.course_id', '=', 'courses.id')
+                    ->where('marks_assigns.student_id', '=', $id)
+                    ->where('marks_assigns.session_id', '=', $r->session_id)
+                    ->select('courses.name as crsName', 'courses.name as Course Title', 'courses.code as Course Code')
+                    ->distinct()
+                    ->get();
+        $k = 1;
+        foreach($obj as $i) {
+            $i->SN = $k++;
+            $total = 0;
+            foreach($list as $j) {
+                if($i->crsName == $j->crsName) {
+                    $total += $j->marks;
+                }
+            }
+            $i->Total = $total;
+
+            if($total>=80 && $total<=100) { $i->CGPA = 4.00; $i->Grade="A+";}
+            else if($total>=75 && $total<=79) { $i->CGPA = 3.75 ; $i->Grade = "A";}
+            else if($total>=70 && $total<=74) { $i->CGPA = 3.50 ; $i->Grade = "A-";}
+            else if($total>=65 && $total<=69) { $i->CGPA = 3.25 ; $i->Grade = "B+";}
+            else if($total>=60 && $total<=64) { $i->CGPA = 3.00 ; $i->Grade = "B";}
+            else if($total>=55 && $total<=59) { $i->CGPA = 2.75 ; $i->Grade = "B-";}
+            else if($total>=50 && $total<=54) { $i->CGPA = 2.50 ; $i->Grade = "C+";}
+            else if($total>=45 && $total<=49) { $i->CGPA = 2.25 ; $i->Grade = "C";}
+            else if($total>=40 && $total<=44) { $i->CGPA = 2.00 ; $i->Grade = "D";}
+            else  { $i->CGPA = 0.00 ; $i->Grade = "F";}
+        }
+        return response()->json([
+            'list'=> $obj,
             'msg' => 'success'
         ]);
     }

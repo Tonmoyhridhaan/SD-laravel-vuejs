@@ -96,3 +96,25 @@ Vue.use(IconsPlugin)
 
 ![alt text](https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%201.45.43%20PM.png)
 
+#### Admin Enrollment Requests
+
+![alt text](https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%201.47.35%20PM.png)
+
+#### Admin Session Creation
+
+![alt text](https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%201.50.12%20PM.png)
+
+<h3 align="center">Teacher Panel</h3>
+
+#### Teacher Marks Distribution
+
+![alt text](https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%202.19.47%20PM.png)
+
+![alt text](https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%202.20.01%20PM.png)
+
+![alt text](https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%202.20.18%20PM.png)
+
+#### Teacher Marks Assign
+
+![alt text](https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%201.43.53%20PM.png)
+

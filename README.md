@@ -84,7 +84,7 @@ Vue.use(IconsPlugin)
 
 #### Login Page
 
-![alt text](https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%201.42.02%20PM.png)
+![alt text](https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%201.42.53%20PM.png)
 
 <h3 align="center">Admin Panel</h3>
 
@@ -117,4 +117,16 @@ Vue.use(IconsPlugin)
 #### Teacher Marks Assign
 
 ![alt text](https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%201.43.53%20PM.png)
+
+<h3 align="center">Student Panel</h3>
+
+#### Student Enrollment
+
+![alt text](https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%201.44.53%20PM.png)
+
+![alt text](https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%201.44.57%20PM.png)
+
+#### Student Result
+
+![alt text](https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%201.45.17%20PM.png)
 

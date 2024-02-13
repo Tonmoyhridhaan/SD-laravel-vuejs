@@ -83,7 +83,8 @@ Vue.use(IconsPlugin)
 ## Software Screenshots
 
 <h3 align="center">Admin Panel</h3>
-#### Admin Panel
+
+#### Admin dashboard
 
 ![alt text](https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%201.42.02%20PM.png)
 

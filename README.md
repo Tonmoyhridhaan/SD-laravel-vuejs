@@ -82,4 +82,6 @@ Vue.use(IconsPlugin)
 
 ## Software Screenshots
 ### Admin Panel
+#### Admin Panel
 ![alt text](https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%201.42.02%20PM.png)
+<h1 align="center">Material Bread</h1>

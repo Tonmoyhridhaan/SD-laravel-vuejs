@@ -81,3 +81,5 @@ Vue.use(IconsPlugin)
 ```
 
 ### Software Screenshots
+## Admin Panel
+![alt text]([http://url/to/img.png](https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%201.42.02%20PM.png)https://github.com/Tonmoyhridhaan/SD-laravel-vuejs/blob/master/images/Screenshot%202024-02-13%20at%201.42.02%20PM.png)
